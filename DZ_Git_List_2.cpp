@@ -18,3 +18,34 @@ public:
             delete tmp;
         }
     }
+    void add(int value) {            //добавление элемента в очередь
+        Node* tmp = new Node(value);
+        if (_p_head == nullptr) {
+            _p_head = _p_tail = tmp;
+        }
+        else {
+            _p_tail->next = tmp;
+            _p_tail = tmp;
+        }
+    }
+    void print_list() {  //вывод элементов
+        Node* tmp_list = _p_head;
+        while (tmp_list != nullptr) {
+            cout << tmp_list->value << '\t';
+            tmp_list = tmp_list->next;
+        }
+        cout << endl;
+    }
+
+    void remove_at() { //удаление элемента из очереди
+
+        Node* tmp = _p_head;
+        _p_head = _p_head->next;
+        delete tmp;
+
+    }
+
+private:
+    Node* _p_head;
+    Node* _p_tail;
+};
