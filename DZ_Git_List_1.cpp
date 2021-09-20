@@ -18,3 +18,68 @@ public:
             delete tmp;
         }
     }
+    void add(int value) {
+        Node* tmp = new Node(value);
+        if (_p_head == nullptr) {
+            _p_head = _p_tail = tmp;
+        }
+        else {
+            _p_tail->next = tmp;
+            _p_tail = tmp;
+        }
+    }
+    void print_list() {
+        Node* tmp_list = _p_head;
+        while (tmp_list != nullptr) {
+            cout << tmp_list->value << '\t';
+            tmp_list = tmp_list->next;
+        }
+        cout << endl;
+    }
+    void insert(int value, int index) {
+        Node* new_node = new Node(value);
+        if (index == 0) {
+            new_node->next = _p_head;
+            _p_head = new_node;
+        }
+        else {
+            Node* tmp = _p_head;
+            for (auto i = 0; i < index - 1; i++) {
+                tmp = tmp->next;
+            }
+            new_node->next = tmp->next;
+            tmp->next = new_node;
+        }
+    }
+    void remove_at(int index) {
+        if (index == 0) {
+            Node* tmp = _p_head;
+            _p_head = _p_head->next;
+            delete tmp;
+        }
+        else {
+            Node* tmp = _p_head;
+            for (auto i = 0; i < index - 1; i++) {
+                tmp = tmp->next;
+            }
+            Node* tmp_remove = tmp->next;
+            tmp->next = tmp_remove->next;
+            delete tmp_remove;
+        }
+    }
+    int find_index(int value) {
+        Node* tmp = _p_head;
+        for (auto i = 0; tmp != nullptr; i++) {
+            if (tmp->value != value) {
+                tmp = tmp->next;
+            }
+            else {
+                return i;
+            }
+        }
+        return -1;
+    }
+private:
+    Node* _p_head;
+    Node* _p_tail;
+};
