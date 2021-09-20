@@ -83,3 +83,49 @@ private:
     Node* _p_head;
     Node* _p_tail;
 };
+int main() {
+    List l;
+    l.add(1);
+    l.add(2);
+    l.add(3);
+    l.add(4);
+    l.add(5);
+    l.print_list();
+
+    int choice = 0;
+    int insert_element = 0;
+    int insert_index_element = 0;
+    int remove_element = 0;
+    int find_element;
+    while (choice != 5)
+    {
+        cout << "Enter choice:\n1-Insert element\n2-Remove element\n3-Find element\n4-Show elements\n5-Stop" << endl;
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+            cout << "Enter number element insert" << endl;
+            cin >> insert_index_element;
+            cout << "Enter element insert" << endl;
+            cin >> insert_element;
+            l.insert(insert_element, insert_index_element);
+            break;
+        case 2:
+            cout << "Enter number element remove" << endl;
+            cin >> remove_element;
+            l.remove_at(remove_element);
+            break;
+        case 3:
+            cout << "Enter number whant find" << endl;
+            cin >> find_element;
+            cout << l.find_index(find_element) << endl;
+            break;
+        case 4:
+            l.print_list();
+            cout << endl;
+            break;
+        case 5:default:break;
+        }
+    }
+}
+
